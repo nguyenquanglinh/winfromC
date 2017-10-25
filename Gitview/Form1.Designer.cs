@@ -40,8 +40,12 @@
             this.btnXoa = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnLoad = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.GridviewBang = new System.Windows.Forms.DataGridView();
+            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Age = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.adress = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.GridviewBang)).BeginInit();
             this.SuspendLayout();
             // 
             // lbTen
@@ -116,7 +120,7 @@
             // 
             // btnThem
             // 
-            this.btnThem.Location = new System.Drawing.Point(28, 145);
+            this.btnThem.Location = new System.Drawing.Point(12, 145);
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(75, 23);
             this.btnThem.TabIndex = 8;
@@ -126,16 +130,17 @@
             // 
             // btnXoa
             // 
-            this.btnXoa.Location = new System.Drawing.Point(139, 145);
+            this.btnXoa.Location = new System.Drawing.Point(93, 145);
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(75, 23);
             this.btnXoa.TabIndex = 9;
             this.btnXoa.Text = "Remove";
             this.btnXoa.UseVisualStyleBackColor = true;
+            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(387, 145);
+            this.btnSave.Location = new System.Drawing.Point(172, 145);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 10;
@@ -151,21 +156,54 @@
             this.btnLoad.TabIndex = 11;
             this.btnLoad.Text = "Load";
             this.btnLoad.UseVisualStyleBackColor = true;
+            this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
             // 
-            // dataGridView1
+            // GridviewBang
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 186);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(460, 150);
-            this.dataGridView1.TabIndex = 12;
+            this.GridviewBang.AllowUserToAddRows = false;
+            this.GridviewBang.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GridviewBang.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.name,
+            this.Age,
+            this.gt,
+            this.adress});
+            this.GridviewBang.Cursor = System.Windows.Forms.Cursors.Default;
+            this.GridviewBang.Location = new System.Drawing.Point(3, 207);
+            this.GridviewBang.Name = "GridviewBang";
+            this.GridviewBang.Size = new System.Drawing.Size(362, 150);
+            this.GridviewBang.TabIndex = 12;
+            this.GridviewBang.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // name
+            // 
+            this.name.HeaderText = "Họ và tên";
+            this.name.Name = "name";
+            this.name.Width = 80;
+            // 
+            // Age
+            // 
+            this.Age.HeaderText = "Tuổi";
+            this.Age.Name = "Age";
+            this.Age.Width = 80;
+            // 
+            // gt
+            // 
+            this.gt.HeaderText = "Giới tính";
+            this.gt.Name = "gt";
+            this.gt.Width = 80;
+            // 
+            // adress
+            // 
+            this.adress.HeaderText = "Địa Chỉ";
+            this.adress.Name = "adress";
+            this.adress.Width = 80;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(475, 511);
-            this.Controls.Add(this.dataGridView1);
+            this.ClientSize = new System.Drawing.Size(371, 363);
+            this.Controls.Add(this.GridviewBang);
             this.Controls.Add(this.btnLoad);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnXoa);
@@ -180,7 +218,8 @@
             this.Controls.Add(this.lbTen);
             this.Name = "Form1";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.GridviewBang)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -200,7 +239,11 @@
         private System.Windows.Forms.Button btnXoa;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnLoad;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView GridviewBang;
+        private System.Windows.Forms.DataGridViewTextBoxColumn name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Age;
+        private System.Windows.Forms.DataGridViewTextBoxColumn gt;
+        private System.Windows.Forms.DataGridViewTextBoxColumn adress;
     }
 }
 

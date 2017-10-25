@@ -8,9 +8,9 @@ namespace Gitview
 {
     class Nguoi
     {
-         string ten, diaChi, gioiTinh;
-        int tuoi;
-        public Nguoi(string ten, int tuoi, string gioiTinh, string diaChi)
+        string ten, diaChi, gioiTinh, tuoi;
+
+        public Nguoi(string ten, string tuoi, string gioiTinh, string diaChi)
         {
             Ten = ten;
             Tuoi = tuoi;
@@ -33,7 +33,7 @@ namespace Gitview
             }
         }
 
-        int Tuoi
+        string Tuoi
         {
             get
             {
@@ -42,7 +42,7 @@ namespace Gitview
             set
             {
                 tuoi = value;
-                if (value <= 0 || value >= 200)
+                if (string.IsNullOrEmpty(value))
                     throw new AggregateException("nhập lại tuổi");
             }
         }
@@ -78,7 +78,7 @@ namespace Gitview
 
         public override string ToString()
         {
-            return "tên " + Ten + "," + " tuổi " + Tuoi + "," + " giới tính " + GioiTinh + "địa chỉ " + DiaChi;
+            return Ten + "," + Tuoi + "," + GioiTinh + "," + DiaChi ;
         }
     }
 }
