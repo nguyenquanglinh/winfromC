@@ -16,39 +16,28 @@ namespace Gitview
     public partial class Form1 : Form
     {
         string ten, gioiTinh, diaChi, tuoi;
-
-
-        private void cbGioiTinh_Click(object sender, EventArgs e)
-        {
-
-        }
+        IPersonStore store = new FileStore();
 
         private void btnSave_Click(object sender, EventArgs e)
-        {
+        { 
             ThongTin();
-            LuuDuLieu();
+            Nguoi peoPle = new Nguoi(ten, tuoi, gioiTinh, diaChi);
+            store.SaveOne(peoPle);
         }
 
-        void LuuDuLieu()
-        {
-            string path = @"D:\Data.txt";
-            string appendText = Nguoi() + Environment.NewLine;
-            File.AppendAllText(path, appendText);
-        }
+        List<Nguoi> dsNguoi = new List<Nguoi>();
 
         public Form1()
         {
             InitializeComponent();
+            GridviewBang.AutoGenerateColumns = false;
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void btnLoad_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
+            dsNguoi = store.LoadAll();
+            this.GridviewBang.DataSource = dsNguoi;
+            GridviewBang.Refresh();
         }
 
         private void btnThem_Click(object sender, EventArgs e)
@@ -63,48 +52,11 @@ namespace Gitview
             {
                 gioiTinh = "nam";
             }
-            else gioiTinh = "nu";
+            else
+                gioiTinh = "nu";
             ten = txtTen.Text;
             tuoi = txtTuoi.Text;
             diaChi = txtDiaChi.Text;
-        }
-
-        private void btnLoad_Click(object sender, EventArgs e)
-        {
-            string[] separators = { ",", ".", "!", "?", ";", ":", "\n", "\r" };
-
-            string path = @"D:\Data.txt";
-            if (!File.Exists(path))
-                MessageBox.Show("file không tồn tại");
-            else
-            {
-                var file = File.ReadAllText(path);
-                var tuTrongFile = file.Split(separators, StringSplitOptions.RemoveEmptyEntries);
-                for (int i = 0; i < tuTrongFile.Length - 4; i = i + 4)
-                {
-                    ten = tuTrongFile[i];
-                    tuoi = (tuTrongFile[i + 1]);
-                    gioiTinh = tuTrongFile[i + 2];
-                    diaChi = tuTrongFile[i + 3];
-                    GridviewBang.Rows.Add(ten, tuoi, gioiTinh, diaChi);
-                }
-                {
-                    var z = File.ReadAllLines(path);
-                    for (int i = 0; i < z.Length; i++)
-                    {
-                        var x = z[i].Split(',');
-                        ten = x[0];
-                        tuoi = x[1];
-                        gioiTinh = x[2];
-                        diaChi = x[3];
-                        GridviewBang.Rows.Add(ten, tuoi, gioiTinh, diaChi);
-                    }
-
-
-
-
-                }
-            }
         }
 
         private void btnXoa_Click(object sender, EventArgs e)
@@ -120,11 +72,6 @@ namespace Gitview
             }
         }
 
-        public string Nguoi()
-        {
-            ThongTin();
-            Nguoi peoPle = new Nguoi(ten, tuoi, gioiTinh, diaChi);
-            return peoPle.ToString();
-        }
+
     }
 }

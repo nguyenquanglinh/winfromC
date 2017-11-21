@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MongoDB.Bson;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,8 @@ namespace Gitview
     {
         string ten, diaChi, gioiTinh, tuoi;
 
+      public ObjectId Id { get; set; }
+
         public Nguoi(string ten, string tuoi, string gioiTinh, string diaChi)
         {
             Ten = ten;
@@ -19,7 +22,7 @@ namespace Gitview
 
         }
 
-        string Ten
+       public  string Ten
         {
             get
             {
@@ -33,7 +36,7 @@ namespace Gitview
             }
         }
 
-        string Tuoi
+        public string Tuoi
         {
             get
             {
@@ -47,7 +50,7 @@ namespace Gitview
             }
         }
 
-        string DiaChi
+        public string DiaChi
         {
             get
             {
@@ -62,7 +65,7 @@ namespace Gitview
 
         }
 
-        string GioiTinh
+        public string GioiTinh
         {
             get
             {
